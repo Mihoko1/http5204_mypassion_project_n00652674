@@ -1,0 +1,75 @@
+﻿@model http5204_mypassion_project_n00652674.Models.ViewModels.ShowSalon
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Salon</h4>
+    <div>@Html.ActionLink("Delete", "DeleteConfirm", new { id = Model.salon.SalonID })</div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.salon.SalonName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.salon.SalonName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.salon.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.salon.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.salon.City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.salon.City)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.salon.Area)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.salon.Area)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.salon.Website)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.salon.Website)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.salon.Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.salon.Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.salon.SalonPicture)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.salon.SalonPicture)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.salon.SalonID }) |
+    @Html.ActionLink("Back to List", "List")
+</p>

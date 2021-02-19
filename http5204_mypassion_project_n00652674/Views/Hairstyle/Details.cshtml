@@ -1,0 +1,74 @@
+﻿@model http5204_mypassion_project_n00652674.Models.ViewModels.ShowHairstyle
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <div>@Html.ActionLink("Delete", "DeleteConfirm", new { id = Model.hairstyle.HairstyleID })</div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.member.MemberID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.member.MemberID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hairstyle.DateUpload)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hairstyle.DateUpload)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hairstyle.HairstylePhoto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hairstyle.HairstylePhoto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hairstyle.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hairstyle.Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hairstyle.Detail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hairstyle.Detail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.member.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.member.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.member.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.member.LastName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.hairstyle.HairstyleID }) |
+    @Html.ActionLink("Back to List", "List")
+</p>

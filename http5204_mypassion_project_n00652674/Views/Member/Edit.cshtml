@@ -1,0 +1,92 @@
+﻿@model http5204_mypassion_project_n00652674.Models.ViewModels.UpdateMember
+
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Member</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.member.MemberID, new { Name = "MemberID" })
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.member.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.member.FirstName, new { htmlAttributes = new { @class = "form-control", Name = "FirstName" } })
+            @Html.ValidationMessageFor(model => model.member.FirstName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.member.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.member.LastName, new { htmlAttributes = new { @class = "form-control", Name = "LastName" } })
+            @Html.ValidationMessageFor(model => model.member.LastName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.member.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.member.Title, new { htmlAttributes = new { @class = "form-control", Name = "Title" } })
+            @Html.ValidationMessageFor(model => model.member.Title, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.member.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.member.Email, new { htmlAttributes = new { @class = "form-control", Name = "Email" } })
+            @Html.ValidationMessageFor(model => model.member.Email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.member.Picture, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.member.Picture, new { htmlAttributes = new { @class = "form-control", Name = "Picture" } })
+            @Html.ValidationMessageFor(model => model.member.Picture, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.member.SalonID, "SalonID", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <select name="SalonID">
+                @foreach (var salon in Model.allsalons)
+                {
+                    <option value="@salon.SalonID">@salon.SalonName</option>
+                }
+            </select>
+
+
+            @*{<div class="col-md-10">
+                @Html.DropDownList("SalonID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.member.SalonID, "", new { @class = "text-danger" })
+            </div>
+                *@
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "List")
+</div>
+
+

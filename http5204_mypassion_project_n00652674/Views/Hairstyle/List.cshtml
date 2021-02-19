@@ -1,0 +1,57 @@
+﻿@model IEnumerable<http5204_mypassion_project_n00652674.Models.HairstyleDto>
+
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MemberID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateUpload)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HairstylePhoto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Detail)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.MemberID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DateUpload)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.HairstylePhoto)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Type)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Detail)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.HairstyleID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.HairstyleID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.HairstyleID })
+    </td>
+</tr>
+}
+
+</table>

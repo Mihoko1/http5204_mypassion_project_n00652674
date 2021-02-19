@@ -1,0 +1,78 @@
+﻿@model http5204_mypassion_project_n00652674.Models.ViewModels.UpdateHairstyle
+
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Hairstyle</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.hairstyle.HairstyleID, new { Name = "HairstyleID" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.hairstyle.DateUpload, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.hairstyle.DateUpload, new { htmlAttributes = new { @class = "form-control", Name = "DateUpload" } })
+                @Html.ValidationMessageFor(model => model.hairstyle.DateUpload, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.hairstyle.HairstylePhoto, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.hairstyle.HairstylePhoto, new { htmlAttributes = new { @class = "form-control", Name = "HairstylePhoto" } })
+                @Html.ValidationMessageFor(model => model.hairstyle.HairstylePhoto, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.hairstyle.Type, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.hairstyle.Type, new { htmlAttributes = new { @class = "form-control", Name = "Type" } })
+                @Html.ValidationMessageFor(model => model.hairstyle.Type, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.hairstyle.Detail, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.hairstyle.Detail, new { htmlAttributes = new { @class = "form-control", Name = "Detail" } })
+                @Html.ValidationMessageFor(model => model.hairstyle.Detail, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.hairstyle.MemberID, "MemberID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select name="MemberID">
+                    @foreach (var member in Model.allmembers)
+                    {
+                    <option value="@member.MemberID">@member.MemberID - @member.FirstName @member.LastName</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "List")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
