@@ -12,10 +12,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.MemberID)
+            @Html.DisplayNameFor(model => model.HairstyleID)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DateUpload)
+            @Html.DisplayNameFor(model => model.MemberID)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.HairstylePhoto)
@@ -26,16 +26,19 @@
         <th>
             @Html.DisplayNameFor(model => model.Detail)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateUpload)
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
 <tr>
     <td>
-        @Html.DisplayFor(modelItem => item.MemberID)
+        @Html.DisplayFor(modelItem => item.HairstyleID)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.DateUpload)
+        @Html.DisplayFor(modelItem => item.MemberID)
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.HairstylePhoto)
@@ -45,6 +48,9 @@
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.Detail)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DateUpload)
     </td>
     <td>
         @Html.ActionLink("Edit", "Edit", new { id = item.HairstyleID }) |

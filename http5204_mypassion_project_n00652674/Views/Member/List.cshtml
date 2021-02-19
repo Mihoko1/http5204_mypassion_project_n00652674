@@ -12,54 +12,52 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.Picture)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.MemberID)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstName)
+            @Html.DisplayNameFor(model => model.FirstName)  @Html.DisplayNameFor(model => model.LastName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LastName)
+            @Html.DisplayNameFor(model => model.Email)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Title)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Email)
+            @Html.DisplayNameFor(model => model.SalonID)
         </th>
-       @* <th>
-            @Html.DisplayNameFor(model => model.Picture)
-        </th>
-        *@
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.MemberID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Picture)
-        </td>
-        
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MemberID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MemberID }) |
-            @Html.ActionLink("Delete", "Member", new { id=item.MemberID })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Picture)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.MemberID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FirstName)  @Html.DisplayFor(modelItem => item.LastName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Email)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Title)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.SalonID)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.MemberID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.MemberID }) |
+        @Html.ActionLink("Delete", "Member", new { id = item.MemberID })
+    </td>
+</tr>
 }
 
 </table>

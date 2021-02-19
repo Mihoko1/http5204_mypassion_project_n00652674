@@ -46,6 +46,7 @@ namespace http5204_mypassion_project_n00652674.Controllers
             {
                 IEnumerable<MemberDto> SelectedMembers = response.Content.ReadAsAsync<IEnumerable<MemberDto>>().Result;
                 return View(SelectedMembers);
+
             }
             else
             {

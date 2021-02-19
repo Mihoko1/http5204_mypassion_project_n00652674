@@ -27,6 +27,8 @@ namespace http5204_mypassion_project_n00652674.Models
         [ForeignKey("Salon")]
         public int SalonID { get; set; }
 
+        public string SalonName { get; set; }
+
         public virtual Salon Salon { get; set; }
 
         public ICollection<Hairstyle> Hairstyles { get; set; }
@@ -48,6 +50,9 @@ namespace http5204_mypassion_project_n00652674.Models
         public string Picture { get; set; }
 
         public int SalonID { get; set; }
+
+        public string SalonName { get; set; }
+
 
     }
 }

@@ -36,7 +36,8 @@ namespace http5204_mypassion_project_n00652674.Controllers
                     Title = Member.Title,
                     Email = Member.Email,
                     Picture = Member.Picture,
-                    SalonID = Member.SalonID
+                    SalonID = Member.SalonID,
+                    SalonName = Member.SalonName
                   
                 };
                 MemberDtos.Add(NewMember);
@@ -65,8 +66,10 @@ namespace http5204_mypassion_project_n00652674.Controllers
                 Title = Member.Title,
                 Email = Member.Email,
                 Picture = Member.Picture,
-                SalonID = Member.SalonID
-               
+                SalonID = Member.SalonID,
+                SalonName = Member.SalonName
+
+
             };
 
 
@@ -89,7 +92,6 @@ namespace http5204_mypassion_project_n00652674.Controllers
                 return NotFound();
             }
 
-            //put into a 'friendly object format'
             SalonDto SalonDto = new SalonDto
             {
                 SalonID = Salon.SalonID,
