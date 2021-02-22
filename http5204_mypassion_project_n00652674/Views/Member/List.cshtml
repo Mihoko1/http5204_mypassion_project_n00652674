@@ -10,6 +10,7 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
+
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Picture)
@@ -32,10 +33,25 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+    @foreach (var item in Model)
+    {
+        
 <tr>
+    
     <td>
-        @Html.DisplayFor(modelItem => item.Picture)
+        @{
+            //Use server rendering to determine an image
+            string pic = "/Content/Members/default.jpg";
+            string alt = "No Profile Picture Provided.";
+            if (item.MemberHasPic)
+            {
+                pic = "/Content/Players/" + item.MemberID + "." + item.Picture;
+                alt = "Profile shot of " + item.FirstName + " " + item.LastName;
+            }
+        }
+
+        <img class="imgSize" src="@pic" alt="@alt" />
+
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.MemberID)
@@ -55,9 +71,9 @@
     <td>
         @Html.ActionLink("Edit", "Edit", new { id = item.MemberID }) |
         @Html.ActionLink("Details", "Details", new { id = item.MemberID }) |
-        @Html.ActionLink("Delete", "Member", new { id = item.MemberID })
+        @Html.ActionLink("Delete", "DeleteConfirm", new { id = item.MemberID })
     </td>
 </tr>
-}
+    }
 
 </table>

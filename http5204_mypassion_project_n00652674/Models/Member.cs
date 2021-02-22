@@ -23,6 +23,8 @@ namespace http5204_mypassion_project_n00652674.Models
 
         public string Picture { get; set; }
 
+        public bool MemberHasPic { get; set; }
+
         // A member works for one salon
         [ForeignKey("Salon")]
         public int SalonID { get; set; }
@@ -49,9 +51,14 @@ namespace http5204_mypassion_project_n00652674.Models
 
         public string Picture { get; set; }
 
+        public bool MemberHasPic { get; set; }
+
+
         public int SalonID { get; set; }
 
         public string SalonName { get; set; }
+
+
 
 
     }

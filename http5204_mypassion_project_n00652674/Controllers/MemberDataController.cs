@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Web;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -9,6 +11,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using http5204_mypassion_project_n00652674.Models;
+using System.Diagnostics;
 
 namespace http5204_mypassion_project_n00652674.Controllers
 {
@@ -38,7 +41,7 @@ namespace http5204_mypassion_project_n00652674.Controllers
                     Picture = Member.Picture,
                     SalonID = Member.SalonID,
                     SalonName = Member.SalonName
-                  
+
                 };
                 MemberDtos.Add(NewMember);
             }
@@ -162,6 +165,7 @@ namespace http5204_mypassion_project_n00652674.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        
 
 
         // DELETE: api/MemberData/5
