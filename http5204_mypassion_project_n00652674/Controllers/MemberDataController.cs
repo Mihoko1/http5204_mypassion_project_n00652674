@@ -39,6 +39,7 @@ namespace http5204_mypassion_project_n00652674.Controllers
                     Title = Member.Title,
                     Email = Member.Email,
                     Picture = Member.Picture,
+                    MemberHasPic = Member.MemberHasPic,
                     SalonID = Member.SalonID,
                     SalonName = Member.SalonName
 
@@ -69,6 +70,7 @@ namespace http5204_mypassion_project_n00652674.Controllers
                 Title = Member.Title,
                 Email = Member.Email,
                 Picture = Member.Picture,
+                MemberHasPic = Member.MemberHasPic,
                 SalonID = Member.SalonID,
                 SalonName = Member.SalonName
 
@@ -165,7 +167,70 @@ namespace http5204_mypassion_project_n00652674.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        
+        [HttpPost]
+        public IHttpActionResult UpdateMemberPic(int id)
+        {
+
+            bool haspic = false;
+            string picextension;
+            if (Request.Content.IsMimeMultipartContent())
+            {
+                Debug.WriteLine("Received multipart form data.");
+
+                int numfiles = HttpContext.Current.Request.Files.Count;
+                Debug.WriteLine("Files Received: " + numfiles);
+
+                //Check if a file is posted
+                if (numfiles == 1 && HttpContext.Current.Request.Files[0] != null)
+                {
+                    var MemberPic = HttpContext.Current.Request.Files[0];
+                    //Check if the file is empty
+                    if (MemberPic.ContentLength > 0)
+                    {
+                        var valtypes = new[] { "jpeg", "jpg", "png", "gif" };
+                        var extension = Path.GetExtension(MemberPic.FileName).Substring(1);
+                        //Check the extension of the file
+                        if (valtypes.Contains(extension))
+                        {
+                            try
+                            {
+                                //file name is the id of the image
+                                string fn = id + "." + extension;
+
+                                //get a direct file path to ~/Content/Players/{id}.{extension}
+                                string path = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/Members/"), fn);
+
+                                //save the file
+                                MemberPic.SaveAs(path);
+
+                                //if these are all successful then we can set these fields
+                                haspic = true;
+                                picextension = extension;
+
+                                //Update the player haspic and picextension fields in the database
+                                Member SelectedPlayer = db.Members.Find(id);
+                                SelectedPlayer.MemberHasPic = haspic;
+                                SelectedPlayer.Picture = extension;
+                                db.Entry(SelectedPlayer).State = EntityState.Modified;
+
+                                db.SaveChanges();
+
+                            }
+                            catch (Exception ex)
+                            {
+                                Debug.WriteLine("Player Image was not saved successfully.");
+                                Debug.WriteLine("Exception:" + ex);
+                            }
+                        }
+                    }
+
+                }
+            }
+
+            return Ok();
+        }
+
+
 
 
         // DELETE: api/MemberData/5

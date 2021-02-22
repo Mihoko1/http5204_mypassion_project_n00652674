@@ -6,63 +6,76 @@
 
 <h2>Details</h2>
 
-<div>
-    <div>@Html.ActionLink("Delete", "DeleteConfirm", new { id = Model.member.MemberID })</div>
-    <hr />
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">@Html.ActionLink("Delete", "DeleteConfirm", new { id = Model.member.MemberID })</div>
+        <hr />
+        @{
+            //Use server rendering to determine an image
+            string pic = "/Content/Members/default.jpg";
+            string alt = "No Profile Picture Provided.";
+            if (Model.member.MemberHasPic)
+            {
+                pic = "/Content/Players/" + Model.member.MemberID + "." + Model.member.Picture;
+                alt = "Profile shot of " + Model.member.FirstName + " " + Model.member.LastName;
 
-    <dl class="dl-horizontal">
-        
-        <dt>
-            @Html.DisplayNameFor(model => model.member.Picture)
-        </dt>
+            }
+        }
+        <div class="col-sm-3 detailsimgSize">
 
-        <dd>
-            @Html.DisplayFor(model => model.member.Picture)
-        </dd>
+            <img class="detailsimgSize" src="@pic" alt="@alt" />
+        </div>
+        <div class="col-sm-9">
+            <dl class="dl-horizontal">
 
 
-        <dt>
-            @Html.DisplayNameFor(model => model.member.FirstName)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.member.FirstName)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.member.FirstName)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.member.FirstName)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.member.LastName)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.member.LastName)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.member.LastName)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.member.LastName)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.member.Title)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.member.Title)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.member.Title)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.member.Title)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.member.Email)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.member.Email)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.member.Email)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.member.Email)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.member.SalonID)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.member.SalonID)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.member.SalonID) - @Html.DisplayFor(model => model.salon.SalonName)
-        </dd>
-    </dl>
+                <dd>
+                    @Html.DisplayFor(model => model.member.SalonID) - @Html.DisplayFor(model => model.salon.SalonName)
+                </dd>
+            </dl>
+        </div>
+
+
+
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.member.MemberID }) |
+        @Html.ActionLink("Back to List", "List")
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.member.MemberID }) |
-    @Html.ActionLink("Back to List", "List")
-</p>

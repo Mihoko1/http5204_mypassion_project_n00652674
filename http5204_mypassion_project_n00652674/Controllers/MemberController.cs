@@ -149,7 +149,7 @@ namespace http5204_mypassion_project_n00652674.Controllers
         // POST: Member/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken()]
-        public ActionResult Edit(int id, Member MemberInfo)
+        public ActionResult Edit(int id, Member MemberInfo, HttpPostedFileBase MemberPic)
         {
             Debug.WriteLine(MemberInfo.FirstName);
             string url = "memberdata/updatemember/" + id;
@@ -160,6 +160,15 @@ namespace http5204_mypassion_project_n00652674.Controllers
             Debug.WriteLine(response.StatusCode);
             if (response.IsSuccessStatusCode)
             {
+
+                //Send over image data for player
+                url = "memberdata/updatememberpic/" + id;
+                Debug.WriteLine("Received player picture " + MemberPic.FileName);
+
+                MultipartFormDataContent requestcontent = new MultipartFormDataContent();
+                HttpContent imagecontent = new StreamContent(MemberPic.InputStream);
+                requestcontent.Add(imagecontent, "MemberPic", MemberPic.FileName);
+                response = client.PostAsync(url, requestcontent).Result;
 
                 return RedirectToAction("Details", new { id = id });
             }
