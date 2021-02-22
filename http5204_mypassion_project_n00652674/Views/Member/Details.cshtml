@@ -5,74 +5,92 @@
 }
 
 <h2>Member Details</h2>
+<hr />
+
+<div>
+    <button class="floatR brn btn-danger">@Html.ActionLink("Delete", "DeleteConfirm", new { id = Model.member.MemberID })</button>
+
+</div>
 
 <div class="container">
+
+
+
     <div class="row">
-        <div class="col-sm-12">@Html.ActionLink("Delete", "DeleteConfirm", new { id = Model.member.MemberID })</div>
-        <hr />
-        @{
-            //Use server rendering to determine an image
-            string pic = "/Content/Members/default.jpg";
-            string alt = "No Profile Picture Provided.";
-            if (Model.member.MemberHasPic)
-            {
-                pic = "/Content/Members/" + Model.member.MemberID + "." + Model.member.Picture;
-                alt = "Profile shot of " + Model.member.FirstName + " " + Model.member.LastName;
+        <div class="col-xs-12">
 
+
+
+
+            @{
+                //Use server rendering to determine an image
+                string pic = "/Content/Members/default.jpg";
+                string alt = "No Profile Picture Provided.";
+                if (Model.member.MemberHasPic)
+                {
+                    pic = "/Content/Members/" + Model.member.MemberID + "." + Model.member.Picture;
+                    alt = "Profile shot of " + Model.member.FirstName + " " + Model.member.LastName;
+
+                }
             }
-        }
-        <div class="col-sm-3 detailsimgSize">
+            <div class="col-xs-4 detailsimgSize">
 
-            <img class="detailsimgSize" src="@pic" alt="@alt" />
+                <img class="detailsimgSize" src="@pic" alt="@alt" />
+            </div>
+            <div class="col-xs-8 info">
+
+
+                <div class="itemContainer">
+                    <div class="fontBold">
+                        Name
+                    </div>
+                    <div class="fontLarger">
+                        @Html.DisplayFor(model => model.member.FirstName)  @Html.DisplayFor(model => model.member.LastName)
+                    </div>
+                </div>
+                <div class="itemContainer">
+                    <div class="fontBold">
+                        Email
+                    </div>
+                    <div class="fontLarger">
+                        @Html.DisplayFor(model => model.member.Email)
+                    </div>
+                </div>
+
+                <div class="itemContainer">
+                    <div class="fontBold">
+                        Title
+                    </div>
+                    <div class="fontLarger">
+                        @Html.DisplayFor(model => model.member.Title)
+                    </div>
+
+                </div>
+
+                <div class="itemContainer">
+                    <div class="fontBold">
+                        Salon ID
+
+                    </div>
+                    <div class="fontLarger">
+                        @Html.DisplayFor(model => model.member.SalonID) - @Html.DisplayFor(model => model.salon.SalonName)
+
+                    </div>
+
+                </div>
+                <div class="itemContainer">
+                    <button class="btn btn-default"> @Html.ActionLink("Edit", "Edit", new { id = Model.member.MemberID })</button>
+                </div>
+
+
+            </div>
+
+
         </div>
-        <div class="col-sm-9">
-            <dl class="dl-horizontal">
-
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.member.FirstName)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.member.FirstName)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.member.LastName)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.member.LastName)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.member.Title)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.member.Title)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.member.Email)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.member.Email)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.member.SalonID)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.member.SalonID) - @Html.DisplayFor(model => model.salon.SalonName)
-                </dd>
-            </dl>
+        <div class="col-12">
+           
+            @Html.ActionLink("Back to List", "List")
         </div>
+
     </div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.member.MemberID }) |
-        @Html.ActionLink("Back to List", "List")
-    </p>
 </div>

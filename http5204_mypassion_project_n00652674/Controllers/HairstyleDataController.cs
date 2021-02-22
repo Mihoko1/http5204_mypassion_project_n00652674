@@ -275,11 +275,9 @@ namespace http5204_mypassion_project_n00652674.Controllers
             base.Dispose(disposing);
         }
 
-        /// <summary>
-        /// Finds a player in the system. Internal use only.
-        /// </summary>
-        /// <param name="id">The player id</param>
-        /// <returns>TRUE if the player exists, false otherwise.</returns>
+        
+        /// <param name="id">Hairstyle id</param>
+        /// <returns>TRUE if hairstyle exists, false otherwise.</returns>
         private bool HairstyleExists(int id)
         {
             return db.Hairstyles.Count(e => e.HairstyleID == id) > 0;

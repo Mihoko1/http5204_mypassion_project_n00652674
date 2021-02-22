@@ -23,14 +23,91 @@ textarea {
     max-width: 280px;
 }
 
-.imgSize{
-    width: 80px;
-    height: 80px;
-    object-fit:cover;
+.floatR{
+    float:right;
 }
+
+.floatR{
+    border:none;
+    padding:5px 10px;
+}
+
+.floatR a{
+    color:#fff;
+}
+
+    .imgSize {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+    }
 
 .detailsimgSize {
     width: 200px;
     height: 200px;
     object-fit: cover;
+}
+
+.cardContainer{
+    margin: 20px auto;
+}
+
+.card {
+    width: 40%;
+    margin: 5%;
+    height: 200px;
+    background-color: #4da8a5;
+    color: #fff;
+    position:relative;
+}
+
+.btnText {
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    color:#fff;
+}
+
+.btnText a{
+    color:#fff;
+}
+
+.btn:hover, .btn:active {
+    background-color: #469996;
+}
+
+.info{
+    margin-left: 20px;
+}
+.fontBold {
+    font-weight: bold;
+}
+.fontLarger{
+    font-size: 1.2em;
+}
+
+.itemContainer{
+    margin-bottom: 10px;
+}
+
+.btn-default:hover a, btn-default:active a{
+    color:#fff;
+}
+
+@media (max-width: 630px) {
+    .detailsimgSize {
+        width: 300px;
+        height: 300px;
+        object-fit: cover;
+    }
+}
+
+@media (max-width: 400px) {
+    .card {
+        width: 90%;
+        height: 150px;
+    }
+
+ 
 }
