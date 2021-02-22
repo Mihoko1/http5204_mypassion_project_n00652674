@@ -65,7 +65,7 @@ namespace http5204_mypassion_project_n00652674.Controllers
             //Debug.WriteLine(response.StatusCode);
             if (response.IsSuccessStatusCode)
             {
-                //Put data into player data transfer object
+                //Put data into member data transfer object
                 MemberDto SelectedMember = response.Content.ReadAsAsync<MemberDto>().Result;
               ViewModel.member = SelectedMember;
 
@@ -161,9 +161,9 @@ namespace http5204_mypassion_project_n00652674.Controllers
             if (response.IsSuccessStatusCode)
             {
 
-                //Send over image data for player
+                //Send over image data for Member
                 url = "memberdata/updatememberpic/" + id;
-                Debug.WriteLine("Received player picture " + MemberPic.FileName);
+                Debug.WriteLine("Received Member picture " + MemberPic.FileName);
 
                 MultipartFormDataContent requestcontent = new MultipartFormDataContent();
                 HttpContent imagecontent = new StreamContent(MemberPic.InputStream);
@@ -200,7 +200,7 @@ namespace http5204_mypassion_project_n00652674.Controllers
             }
         }
 
-        // GET: Player/Delete/5
+        // GET: Member/Delete/5
         [HttpGet]
         public ActionResult DeleteConfirm(int id)
         {

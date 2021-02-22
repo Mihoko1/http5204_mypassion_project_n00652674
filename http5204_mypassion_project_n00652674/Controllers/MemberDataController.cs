@@ -110,7 +110,7 @@ namespace http5204_mypassion_project_n00652674.Controllers
         }
 
         /// POST: api/MemberData/AddMember
-        ///  FORM DATA: Player JSON Object
+        ///  FORM DATA: Member JSON Object
         /// </example>
         [ResponseType(typeof(Member))]
         [HttpPost]
@@ -197,7 +197,7 @@ namespace http5204_mypassion_project_n00652674.Controllers
                                 //file name is the id of the image
                                 string fn = id + "." + extension;
 
-                                //get a direct file path to ~/Content/Players/{id}.{extension}
+                                //get a direct file path to ~/Content/Members/{id}.{extension}
                                 string path = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/Members/"), fn);
 
                                 //save the file
@@ -207,18 +207,18 @@ namespace http5204_mypassion_project_n00652674.Controllers
                                 haspic = true;
                                 picextension = extension;
 
-                                //Update the player haspic and picextension fields in the database
-                                Member SelectedPlayer = db.Members.Find(id);
-                                SelectedPlayer.MemberHasPic = haspic;
-                                SelectedPlayer.Picture = extension;
-                                db.Entry(SelectedPlayer).State = EntityState.Modified;
+                                //Update the member haspic and picextension fields in the database
+                                Member SelectedMember = db.Members.Find(id);
+                                SelectedMember.MemberHasPic = haspic;
+                                SelectedMember.Picture = extension;
+                                db.Entry(SelectedMember).State = EntityState.Modified;
 
                                 db.SaveChanges();
 
                             }
                             catch (Exception ex)
                             {
-                                Debug.WriteLine("Player Image was not saved successfully.");
+                                Debug.WriteLine("Member Image was not saved successfully.");
                                 Debug.WriteLine("Exception:" + ex);
                             }
                         }
