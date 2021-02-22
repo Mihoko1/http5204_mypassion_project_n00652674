@@ -35,24 +35,28 @@
     </td>
     <td>
         <div>
-            <span>Name</span>
-            <span> @Html.DisplayFor(modelItem => item.FirstName)  @Html.DisplayFor(modelItem => item.LastName)</span></div>
+            <span>Name:</span>
+            <span class="fontBold"> @Html.DisplayFor(modelItem => item.FirstName)  @Html.DisplayFor(modelItem => item.LastName)</span></div>
         <div>
-            <span>Member ID</span>
-            <span>
+            <span>Member ID:</span>
+            <span class="fontBold">
                 @Html.DisplayFor(modelItem => item.MemberID)
             </span>
         </div>
     
     <td>
-        @Html.DisplayFor(modelItem => item.Email)
+        <span class="fontBold">
+            @Html.DisplayFor(modelItem => item.Email)
+        </span>
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.Title)
+        <span class="fontBold">
+            @Html.DisplayFor(modelItem => item.Title)
+        </span>
     </td>
     <td>
         <span>Salon ID:</span>       
-        <span> @Html.DisplayFor(modelItem => item.SalonID)</span>
+        <span class="fontBold"> @Html.DisplayFor(modelItem => item.SalonID)</span>
     </td>
     <td>
         @Html.ActionLink("Edit", "Edit", new { id = item.MemberID }) |
