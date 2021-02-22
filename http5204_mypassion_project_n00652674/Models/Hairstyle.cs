@@ -16,6 +16,8 @@ namespace http5204_mypassion_project_n00652674.Models
         public DateTime DateUpload { get; set; }
 
         public string HairstylePhoto { get; set; }
+        
+        public bool HairstyleHasPic { get; set; }
 
         public string Type { get; set; }
 
@@ -41,6 +43,8 @@ namespace http5204_mypassion_project_n00652674.Models
 
         [DisplayName("Hairstyle Photo")]
         public string HairstylePhoto { get; set; }
+
+        public bool HairstyleHasPic { get; set; }
 
         public string Type { get; set; }
 

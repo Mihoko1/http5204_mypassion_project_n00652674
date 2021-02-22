@@ -61,7 +61,7 @@ namespace http5204_mypassion_project_n00652674.Controllers
             //Debug.WriteLine(response.StatusCode);
             if (response.IsSuccessStatusCode)
             {
-                //Put data into player data transfer object
+                //Put data into hairstyle data transfer object
                 HairstyleDto SelectedHairStyle = response.Content.ReadAsAsync<HairstyleDto>().Result;
                 ViewModel.hairstyle = SelectedHairStyle;
 
@@ -143,7 +143,7 @@ namespace http5204_mypassion_project_n00652674.Controllers
         // POST: Hairstyle/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken()]
-        public ActionResult Edit(int id, Hairstyle HairstyleInfo)
+        public ActionResult Edit(int id, Hairstyle HairstyleInfo, HttpPostedFileBase HairstylePic)
         {
             Debug.WriteLine(HairstyleInfo.HairstyleID);
             string url = "hairstyledata/updatehairstyle/" + id;
@@ -154,6 +154,15 @@ namespace http5204_mypassion_project_n00652674.Controllers
             Debug.WriteLine(response.StatusCode);
             if (response.IsSuccessStatusCode)
             {
+
+                //Send over image data for hairstyle
+                url = "hairstyledata/updatehairstylepic/" + id;
+                Debug.WriteLine("Received Hairstyle picture " + HairstylePic.FileName);
+
+                MultipartFormDataContent requestcontent = new MultipartFormDataContent();
+                HttpContent imagecontent = new StreamContent(HairstylePic.InputStream);
+                requestcontent.Add(imagecontent, "HairstylePic", HairstylePic.FileName);
+                response = client.PostAsync(url, requestcontent).Result;
 
                 return RedirectToAction("Details", new { id = id });
             }
@@ -173,7 +182,7 @@ namespace http5204_mypassion_project_n00652674.Controllers
             Debug.WriteLine(response.StatusCode);
             if (response.IsSuccessStatusCode)
             {
-                //Put data into player data transfer object
+                //Put data into hairstyle data transfer object
                 HairstyleDto SelectedHairstyle = response.Content.ReadAsAsync<HairstyleDto>().Result;
                 return View(SelectedHairstyle);
             }

@@ -38,11 +38,24 @@
         @Html.DisplayFor(modelItem => item.HairstyleID)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.MemberID)
+        @{
+            //Use server rendering to determine an image
+            string pic = "/Content/Hairstyles/default.jpg";
+            string alt = "No Hairstyle Picture Provided.";
+            if (item.HairstyleHasPic)
+            {
+                pic = "/Content/Hairstyles/" + item.HairstyleID + "." + item.HairstylePhoto;
+                alt = "Hairstyle photo by " + item.FirstName + " " + item.LastName;
+            }
+        }
+
+        <img class="imgSize" src="@pic" alt="@alt" />
+
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.HairstylePhoto)
+        @Html.DisplayFor(modelItem => item.MemberID)
     </td>
+
     <td>
         @Html.DisplayFor(modelItem => item.Type)
     </td>

@@ -4,71 +4,92 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>HairStyle Details</h2>
+<div class="container">
+    <div class="row">
+        <div>@Html.ActionLink("Delete", "DeleteConfirm", new { id = Model.hairstyle.HairstyleID })</div>
 
-<div>
-    <div>@Html.ActionLink("Delete", "DeleteConfirm", new { id = Model.hairstyle.HairstyleID })</div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.member.MemberID)
-        </dt>
+        <hr />
+        @{
+            //Use server rendering to determine an image
+            string pic = "/Content/Hairstyles/default.jpg";
+            string alt = "No Hairstyle Picture Provided.";
+            if (Model.hairstyle.HairstyleHasPic)
+            {
+                pic = "/Content/Hairstyles/" + Model.hairstyle.HairstyleID + "." + Model.hairstyle.HairstylePhoto;
+                alt = "Hairstyle photo by " + Model.member.FirstName + " " + Model.member.LastName;
 
-        <dd>
-            @Html.DisplayFor(model => model.member.MemberID)
-        </dd>
+            }
+        }
+        <div class="col-sm-3 detailsimgSize">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.hairstyle.DateUpload)
-        </dt>
+            <img class="detailsimgSize" src="@pic" alt="@alt" />
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.hairstyle.DateUpload)
-        </dd>
+        <div class="col-sm-9">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.hairstyle.HairstylePhoto)
-        </dt>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.member.MemberID)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.hairstyle.HairstylePhoto)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.member.MemberID)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.hairstyle.Type)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.hairstyle.DateUpload)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.hairstyle.Type)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.hairstyle.DateUpload)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.hairstyle.Detail)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.hairstyle.HairstylePhoto)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.hairstyle.Detail)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.hairstyle.HairstylePhoto)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.member.FirstName)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.hairstyle.Type)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.member.FirstName)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.hairstyle.Type)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.member.LastName)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.hairstyle.Detail)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.member.LastName)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.hairstyle.Detail)
+                </dd>
 
-    </dl>
+                <dt>
+                    @Html.DisplayNameFor(model => model.member.FirstName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.member.FirstName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.member.LastName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.member.LastName)
+                </dd>
+
+            </dl>
+        </div>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.hairstyle.HairstyleID }) |
+        @Html.ActionLink("Back to List", "List")
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.hairstyle.HairstyleID }) |
-    @Html.ActionLink("Back to List", "List")
-</p>
