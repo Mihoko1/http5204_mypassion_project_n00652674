@@ -163,13 +163,14 @@ namespace http5204_mypassion_project_n00652674.Controllers
 
                 //Send over image data for Member
                 url = "memberdata/updatememberpic/" + id;
-                Debug.WriteLine("Received Member picture " + MemberPic.FileName);
-
-                MultipartFormDataContent requestcontent = new MultipartFormDataContent();
-                HttpContent imagecontent = new StreamContent(MemberPic.InputStream);
-                requestcontent.Add(imagecontent, "MemberPic", MemberPic.FileName);
-                response = client.PostAsync(url, requestcontent).Result;
-
+                // Debug.WriteLine("Received Member picture " + MemberPic.FileName);
+                if (MemberPic != null)
+                {
+                    MultipartFormDataContent requestcontent = new MultipartFormDataContent();
+                    HttpContent imagecontent = new StreamContent(MemberPic.InputStream);
+                    requestcontent.Add(imagecontent, "MemberPic", MemberPic.FileName);
+                    response = client.PostAsync(url, requestcontent).Result;
+                }
                 return RedirectToAction("Details", new { id = id });
             }
             else

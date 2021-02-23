@@ -4,78 +4,80 @@
     ViewBag.Title = "View";
 }
 
-<h2>DeleteConfirm</h2>
+<h2>Delete Salon</h2>
+
+<div class="col-12">
+
+    @Html.ActionLink("Back to List", "List")
+</div>
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Salon</h4>
+
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.SalonName)
-        </dt>
+    <div class="container">
 
-        <dd>
-            @Html.DisplayFor(model => model.SalonName)
-        </dd>
+        <div class="row">
+            <div class="col-xs-10">
+                <div class="itemContainer">
+                    <div class="fontBold">
+                        Salon Name
+                    </div>
+                    <div class="fontLarger">
+                        @Html.DisplayFor(model => model.SalonName)
+                    </div>
+                </div>
+                <div class="itemContainer">
+                    <div class="fontBold">
+                        Address
+                    </div>
+                    <div class="fontLarger">
+                        <div>
+                            @Html.DisplayFor(model => model.Address)
+                        </div>
+                        <div>
+                            @Html.DisplayFor(model => model.City), @Html.DisplayFor(model => model.Postal)
+                        </div>
+                    </div>
+                </div>
+                <div class="itemContainer">
+                    <div class="fontBold">
+                        Area
+                    </div>
+                    <div class="fontLarger">
+                        @Html.DisplayFor(model => model.Area)
+                    </div>
+                </div>
+                <div class="itemContainer">
+                    <div class="fontBold">
+                        Website
+                    </div>
+                    <div class="fontLarger">
+                        @Html.DisplayFor(model => model.Website)
+                    </div>
+                </div>
+                <div class="itemContainer">
+                    <div class="fontBold">
+                        Phone
+                    </div>
+                    <div class="fontLarger">
+                        @Html.DisplayFor(model => model.Phone)
+                    </div>
+                </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
+                @using (Html.BeginForm("Delete", "Salon", new { id = Model.SalonID }))
+                {
+                    @Html.AntiForgeryToken()
 
-        <dd>
-            @Html.DisplayFor(model => model.Address)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.City)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.City)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Area)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Area)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Website)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Website)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Phone)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Phone)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SalonPicture)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SalonPicture)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm("Delete", "Salon", new { id = Model.SalonID }))
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "List")
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Delete" class="btn btn-default" /> 
+                      
+                    </div>
+                }
+            </div>
         </div>
-    }
+
+    </div>
+
+
 </div>

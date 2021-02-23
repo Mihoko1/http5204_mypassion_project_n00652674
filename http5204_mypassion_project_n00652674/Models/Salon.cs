@@ -15,9 +15,13 @@ namespace http5204_mypassion_project_n00652674.Models
 
         public string SalonName { get; set; }
 
+        public string SalonEmail { get; set; }
+
         public string Address { get; set; }
 
         public string City { get; set; }
+
+        public string Postal { get; set; }
 
         public string Area { get; set; }
 
@@ -26,6 +30,8 @@ namespace http5204_mypassion_project_n00652674.Models
         public string Phone { get; set; }
 
         public string SalonPicture { get; set; }
+
+        public bool SalonHasPic { get; set; }
 
         // A salon can have many members
         public ICollection<Member> Members { get; set; }
@@ -40,9 +46,14 @@ namespace http5204_mypassion_project_n00652674.Models
         [DisplayName("Salon Name")]
         public string SalonName { get; set; }
 
+        [DisplayName("Salon Email")]
+        public string SalonEmail { get; set; }
+
         public string Address { get; set; }
 
         public string City { get; set; }
+
+        public string Postal { get; set; }
 
         public string Area { get; set; }
 
@@ -50,6 +61,9 @@ namespace http5204_mypassion_project_n00652674.Models
 
         public string Phone { get; set; }
 
+        [DisplayName("Salon Picture")]
         public string SalonPicture { get; set; }
+
+        public bool SalonHasPic { get; set; }
     }
 }

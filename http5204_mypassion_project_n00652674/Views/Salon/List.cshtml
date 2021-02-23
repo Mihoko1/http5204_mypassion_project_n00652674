@@ -10,66 +10,69 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.SalonID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SalonName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.City)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Area)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Website)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Phone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SalonPicture)
-        </th>
-        <th></th>
-    </tr>
+   
 
 @foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.SalonID)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.SalonName)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Address)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.City)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Area)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Website)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Phone)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.SalonPicture)
-    </td>
-    <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.SalonID }) |
-        @Html.ActionLink("Details", "Details", new { id = item.SalonID }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.SalonID })
-    </td>
-</tr>
+    <tr>
+        <td>
+            @{
+                //Use server rendering to determine an image
+                string pic = "/Content/Salons/default.jpg";
+                string alt = "No Salon Picture Provided.";
+                if (item.SalonHasPic)
+                {
+                    pic = "/Content/Salons/" + item.SalonID + "." + item.SalonPicture;
+                    alt = "Salon picture of " + item.SalonName;
+                }
+            }
+
+            <img class="imgSize" src="@pic" alt="@alt" />
+
+        </td>
+        <td>
+            <div>
+                <span class="fontBold">
+                    @Html.DisplayFor(modelItem => item.SalonName)
+                </span>
+            </div>
+            <div>
+                <span>Salon ID:</span><span class="fontBold"> @Html.DisplayFor(modelItem => item.SalonID)</span>
+            </div>
+        </td>
+        <td>
+            <div>
+                <span>
+                    @Html.DisplayFor(modelItem => item.SalonEmail)
+                </span>
+            </div>
+        </td>
+        <td>
+            <div>
+                <div class="fontBold">
+                    @Html.DisplayFor(modelItem => item.Address)
+                </div>
+                <div class="fontBold">
+                    <span> @Html.DisplayFor(modelItem => item.City)</span><span> @Html.DisplayFor(modelItem => item.Postal)</span>
+                </div>
+            </div>
+        </td>
+        <td>
+            <div>
+                <div class="fontBold">
+                    @Html.DisplayFor(modelItem => item.Website)
+                </div>
+                <div class="fontBold">
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </div>
+            </div>
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.SalonID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.SalonID }) |
+            @Html.ActionLink("Delete", "DeleteConfirm", new { id = item.SalonID })
+        </td>
+    </tr>
 }
 
 </table>

@@ -136,7 +136,7 @@ namespace http5204_mypassion_project_n00652674.Controllers
         // POST: Salon/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken()]
-        public ActionResult Edit(int id, Salon SalonInfo)
+        public ActionResult Edit(int id, Salon SalonInfo, HttpPostedFileBase SalonPic)
         {
             Debug.WriteLine(SalonInfo.SalonName);
             string url = "salondata/updatesalon/" + id;
@@ -147,6 +147,16 @@ namespace http5204_mypassion_project_n00652674.Controllers
 
             if (response.IsSuccessStatusCode)
             {
+
+                //Send over image data for Salon
+                url = "salondata/updatesalonpic/" + id;
+                // Debug.WriteLine("Received Salon picture " + SalonPic.FileName);
+                if (SalonPic != null) {
+                    MultipartFormDataContent requestcontent = new MultipartFormDataContent();
+                    HttpContent imagecontent = new StreamContent(SalonPic.InputStream);
+                    requestcontent.Add(imagecontent, "SalonPic", SalonPic.FileName);
+                    response = client.PostAsync(url, requestcontent).Result;
+                }
                 return RedirectToAction("Details", new { id = id });
             }
             else

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Web;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -9,6 +11,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using http5204_mypassion_project_n00652674.Models;
+using System.Diagnostics;
 
 namespace http5204_mypassion_project_n00652674.Controllers
 {
@@ -32,12 +35,15 @@ namespace http5204_mypassion_project_n00652674.Controllers
                 {
                     SalonID = Salon.SalonID,
                     SalonName = Salon.SalonName,
+                    SalonEmail = Salon.SalonEmail,
                     Address = Salon.Address,
                     City = Salon.City,
+                    Postal = Salon.Postal,
                     Area = Salon.Area,
                     Website = Salon.Website,
-                    Phone = Salon.Phone
-                    //SalonPicture = Salon.SalonPicture
+                    Phone = Salon.Phone,
+                    SalonPicture = Salon.SalonPicture,
+                    SalonHasPic = Salon.SalonHasPic
                 };
                 SalonDtos.Add(NewSalon);
             }
@@ -59,12 +65,15 @@ namespace http5204_mypassion_project_n00652674.Controllers
             {
                 SalonID = Salon.SalonID,
                 SalonName = Salon.SalonName,
+                SalonEmail = Salon.SalonEmail,
                 Address = Salon.Address,
                 City = Salon.City,
+                Postal = Salon.Postal,    
                 Area = Salon.Area,
                 Website = Salon.Website,
                 Phone = Salon.Phone,
-                SalonPicture = Salon.SalonPicture
+                SalonPicture = Salon.SalonPicture,
+                SalonHasPic = Salon.SalonHasPic
             };
 
             return Ok(SalonDto);
@@ -158,6 +167,70 @@ namespace http5204_mypassion_project_n00652674.Controllers
             db.SaveChanges();
 
             return Ok(Salon.SalonID);
+        }
+
+        // Update Salon Picture
+        [HttpPost]
+        public IHttpActionResult UpdateSalonPic(int id)
+        {
+
+            bool haspic = false;
+            string picextension;
+            if (Request.Content.IsMimeMultipartContent())
+            {
+                Debug.WriteLine("Received multipart form data.");
+
+                int numfiles = HttpContext.Current.Request.Files.Count;
+                Debug.WriteLine("Files Received: " + numfiles);
+
+                //Check if a file is posted
+                if (numfiles == 1 && HttpContext.Current.Request.Files[0] != null)
+                {
+                    var SalonPic = HttpContext.Current.Request.Files[0];
+                    //Check if the file is empty
+                    if (SalonPic.ContentLength > 0)
+                    {
+                        var valtypes = new[] { "jpeg", "jpg", "png", "gif" };
+                        var extension = Path.GetExtension(SalonPic.FileName).Substring(1);
+                        //Check the extension of the file
+                        if (valtypes.Contains(extension))
+                        {
+                            try
+                            {
+                                //file name is the id of the image
+                                string fn = id + "." + extension;
+
+                                //get a direct file path to ~/Content/Salon/{id}.{extension}
+                                string path = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/Salons/"), fn);
+
+                                //save the file
+                                SalonPic.SaveAs(path);
+
+                                //if these are all successful then we can set these fields
+                                haspic = true;
+                                picextension = extension;
+
+                                //Update the salon haspic and picextension fields in the database
+                                Salon SelectedSalon = db.Salons.Find(id);
+                                SelectedSalon.SalonHasPic = haspic;
+                                SelectedSalon.SalonPicture = extension;
+                                db.Entry(SelectedSalon).State = EntityState.Modified;
+
+                                db.SaveChanges();
+
+                            }
+                            catch (Exception ex)
+                            {
+                                Debug.WriteLine("Member Image was not saved successfully.");
+                                Debug.WriteLine("Exception:" + ex);
+                            }
+                        }
+                    }
+
+                }
+            }
+
+            return Ok();
         }
 
         // DELETE: api/SalonData/5

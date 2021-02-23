@@ -4,72 +4,98 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
-
+<h2>Salon Details</h2>
 <div>
-    <h4>Salon</h4>
-    <div>@Html.ActionLink("Delete", "DeleteConfirm", new { id = Model.salon.SalonID })</div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.salon.SalonName)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.salon.SalonName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.salon.Address)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.salon.Address)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.salon.City)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.salon.City)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.salon.Area)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.salon.Area)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.salon.Website)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.salon.Website)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.salon.Phone)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.salon.Phone)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.salon.SalonPicture)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.salon.SalonPicture)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.salon.SalonID }) |
     @Html.ActionLink("Back to List", "List")
-</p>
+</div>
+<hr />
+<div>
+    <button class="floatR brn btn-danger">@Html.ActionLink("Delete", "DeleteConfirm", new { id = Model.salon.SalonID })</button>
+</div>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-xs-12">
+            @{
+                //Use server rendering to determine an image
+                string pic = "/Content/Salons/default.jpg";
+                string alt = "No Profile Picture Provided.";
+                if (Model.salon.SalonHasPic)
+                {
+                    pic = "/Content/Salons/" + Model.salon.SalonID + "." + Model.salon.SalonPicture;
+                    alt = "Salon picture of " + Model.salon.SalonName;
+
+                }
+            }
+            <div class="col-xs-4 detailsimgSize">
+
+                <img class="detailsimgSize" src="@pic" alt="@alt" />
+            </div>
+            <div class="col-xs-8 info">
+
+
+                <div class="itemContainer">
+                    <div class="fontBold">
+                        Salon Name
+                    </div>
+                    <div class="fontLarger">
+                        @Html.DisplayFor(model => model.salon.SalonName)
+                    </div>
+                </div>
+                <div class="itemContainer">
+                    <div class="fontBold">
+                        Email
+                    </div>
+                    <div class="fontLarger">
+                        @Html.DisplayFor(model => model.salon.SalonEmail)
+                    </div>
+                </div>
+
+                <div class="itemContainer">
+                    <div class="fontBold">
+                        Address
+                    </div>
+                    <div class="fontLarger">
+                        <div> @Html.DisplayFor(model => model.salon.Address)</div>
+                        <div> @Html.DisplayFor(model => model.salon.City)</div>
+                    </div>
+
+                </div>
+                <div class="itemContainer">
+                    <div class="fontBold">
+                        Area
+                    </div>
+                    <div class="fontLarger">
+                        @Html.DisplayFor(model => model.salon.Area)
+                    </div>
+
+                </div>
+
+                <div class="itemContainer">
+                    <div class="fontBold">
+                        Phone
+                    </div>
+                    <div class="fontLarger">
+                        @Html.DisplayFor(model => model.salon.Phone)
+                    </div>
+                </div>
+
+                <div class="itemContainer">
+                    <div class="fontBold">
+                        Website
+                    </div>
+                    <div class="fontLarger">
+                        @Html.DisplayFor(model => model.salon.Website)
+                    </div>
+                </div>
+
+                <div class="itemContainer">
+                    <button class="btn btn-default"> @Html.ActionLink("Edit", "Edit", new { id = Model.salon.SalonID })</button>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+</div>
