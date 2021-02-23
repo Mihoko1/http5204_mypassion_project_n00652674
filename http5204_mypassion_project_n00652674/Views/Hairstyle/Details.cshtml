@@ -5,91 +5,88 @@
 }
 
 <h2>HairStyle Details</h2>
+<div class="col-12">
+
+    @Html.ActionLink("Back to List", "List")
+</div>
+<hr />
+<div>
+    <button class="floatR brn btn-danger">@Html.ActionLink("Delete", "DeleteConfirm", new { id = Model.member.MemberID })</button>
+
+</div>
 <div class="container">
+
     <div class="row">
-        <div>@Html.ActionLink("Delete", "DeleteConfirm", new { id = Model.hairstyle.HairstyleID })</div>
+        <div class="col-xs-12">
 
-        <hr />
-        @{
-            //Use server rendering to determine an image
-            string pic = "/Content/Hairstyles/default.jpg";
-            string alt = "No Hairstyle Picture Provided.";
-            if (Model.hairstyle.HairstyleHasPic)
-            {
-                pic = "/Content/Hairstyles/" + Model.hairstyle.HairstyleID + "." + Model.hairstyle.HairstylePhoto;
-                alt = "Hairstyle photo by " + Model.member.FirstName + " " + Model.member.LastName;
 
+
+            @{
+                //Use server rendering to determine an image
+                string pic = "/Content/Hairstyles/default.jpg";
+                string alt = "No Hairstyle Picture Provided.";
+                if (Model.hairstyle.HairstyleHasPic)
+                {
+                    pic = "/Content/Hairstyles/" + Model.hairstyle.HairstyleID + "." + Model.hairstyle.HairstylePhoto;
+                    alt = "Hairstyle photo by " + Model.member.FirstName + " " + Model.member.LastName;
+
+                }
             }
-        }
-        <div class="col-sm-3 detailsimgSize">
+            <div class="col-xs-4 detailsimgSize">
 
-            <img class="detailsimgSize" src="@pic" alt="@alt" />
+                <img class="detailsimgSize" src="@pic" alt="@alt" />
+            </div>
+
+            <div class="col-xs-8 info">
+                <div class="itemContainer">
+                    <div class="fontBold">
+                        @Html.DisplayNameFor(model => model.member.MemberID)
+                    </div>
+                    <div class="fontLarger">
+                        @Html.DisplayFor(model => model.member.MemberID)
+                    </div>
+                </div>
+                <div class="itemContainer">
+                    <div class="fontBold">
+                        Name
+                    </div>
+                    <div class="fontLarger">
+                        @Html.DisplayFor(model => model.member.FirstName)   @Html.DisplayFor(model => model.member.LastName)
+                    </div>
+                </div>
+
+                <div class="itemContainer">
+                    <div class="fontBold">
+                        @Html.DisplayNameFor(model => model.hairstyle.Type)
+                    </div>
+                    <div class="fontLarger">
+                        @Html.DisplayFor(model => model.hairstyle.Type)
+                    </div>
+                </div>
+                <div class="itemContainer">
+                    <div class="fontBold">
+                        @Html.DisplayNameFor(model => model.hairstyle.Detail)
+                    </div>
+                    <div class="fontLarger">
+                        @Html.DisplayFor(model => model.hairstyle.Detail)
+                    </div>
+                </div>
+                <div class="itemContainer">
+                    <div class="fontBold">
+                        @Html.DisplayNameFor(model => model.hairstyle.DateUpload)
+                    </div>
+                    <div class="fontLarger">
+                        @Html.DisplayFor(model => model.hairstyle.DateUpload)
+                    </div>
+                </div>
+
+                <div class="itemContainer">
+                    <button class="btn btn-default"> @Html.ActionLink("Edit", "Edit", new { id = Model.hairstyle.HairstyleID })</button>
+                </div>
+
+            </div>
         </div>
-
-        <div class="col-sm-9">
-
-            <dl class="dl-horizontal">
-                <dt>
-                    @Html.DisplayNameFor(model => model.member.MemberID)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.member.MemberID)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.hairstyle.DateUpload)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.hairstyle.DateUpload)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.hairstyle.HairstylePhoto)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.hairstyle.HairstylePhoto)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.hairstyle.Type)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.hairstyle.Type)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.hairstyle.Detail)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.hairstyle.Detail)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.member.FirstName)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.member.FirstName)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.member.LastName)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.member.LastName)
-                </dd>
-
-            </dl>
-        </div>
+      
+        
     </div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.hairstyle.HairstyleID }) |
-        @Html.ActionLink("Back to List", "List")
-    </p>
 </div>

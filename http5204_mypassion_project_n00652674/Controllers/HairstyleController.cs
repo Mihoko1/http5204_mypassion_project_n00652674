@@ -31,9 +31,7 @@ namespace http5204_mypassion_project_n00652674.Controllers
 
 
             //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ACCESS_TOKEN);
-
         }
-
 
         // GET: Hairstyle
         public ActionResult List()
@@ -157,13 +155,14 @@ namespace http5204_mypassion_project_n00652674.Controllers
 
                 //Send over image data for hairstyle
                 url = "hairstyledata/updatehairstylepic/" + id;
-                Debug.WriteLine("Received Hairstyle picture " + HairstylePic.FileName);
-
-                MultipartFormDataContent requestcontent = new MultipartFormDataContent();
-                HttpContent imagecontent = new StreamContent(HairstylePic.InputStream);
-                requestcontent.Add(imagecontent, "HairstylePic", HairstylePic.FileName);
-                response = client.PostAsync(url, requestcontent).Result;
-
+                //Debug.WriteLine("Received Hairstyle picture " + HairstylePic.FileName);
+                if (HairstylePic != null)
+                {
+                    MultipartFormDataContent requestcontent = new MultipartFormDataContent();
+                    HttpContent imagecontent = new StreamContent(HairstylePic.InputStream);
+                    requestcontent.Add(imagecontent, "HairstylePic", HairstylePic.FileName);
+                    response = client.PostAsync(url, requestcontent).Result;
+                }
                 return RedirectToAction("Details", new { id = id });
             }
             else

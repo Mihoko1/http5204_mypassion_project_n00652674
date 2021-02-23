@@ -27,10 +27,20 @@ namespace http5204_mypassion_project_n00652674.Controllers
         {
             List<Hairstyle> Hairstyles = db.Hairstyles.ToList();
             List<HairstyleDto> HairstyleDtos = new List<HairstyleDto> { };
+           
 
             //Here you can choose which information is exposed to the API
             foreach (var Hairstyle in Hairstyles)
             {
+                Member Member = db.Members
+               .Where(m => m.Hairstyles.Any(p => p.HairstyleID == Hairstyle.HairstyleID))
+               .FirstOrDefault();
+                //if not found, return 404 status code.
+                if (Member == null)
+                {
+                    return NotFound();
+                }
+
                 HairstyleDto NewPlayer = new HairstyleDto
                 {
                     HairstyleID = Hairstyle.HairstyleID,
@@ -39,8 +49,11 @@ namespace http5204_mypassion_project_n00652674.Controllers
                     HairstyleHasPic = Hairstyle.HairstyleHasPic,
                     Type = Hairstyle.Type,
                     Detail = Hairstyle.Detail,
-                    MemberID = Hairstyle.MemberID
+                    MemberID = Hairstyle.MemberID,
+                    FirstName = Member.FirstName,
+                    LastName = Member.LastName
                 };
+
                 HairstyleDtos.Add(NewPlayer);
             }
 
@@ -148,7 +161,7 @@ namespace http5204_mypassion_project_n00652674.Controllers
 
         /// <example>
         /// POST: api/HairstyleData/AddHairstyle
-        ///  FORM DATA: Player JSON Object
+        ///  FORM DATA: Hairstyle JSON Object
         /// </example>
         [ResponseType(typeof(Hairstyle))]
         [HttpPost]
@@ -255,6 +268,8 @@ namespace http5204_mypassion_project_n00652674.Controllers
         public IHttpActionResult DeleteHairstyle(int id)
         {
             Hairstyle hairstyle = db.Hairstyles.Find(id);
+
+
             if (hairstyle == null)
             {
                 return NotFound();

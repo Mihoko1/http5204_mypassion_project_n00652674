@@ -36,7 +36,8 @@
     <td>
         <div>
             <span>Name:</span>
-            <span class="fontBold"> @Html.DisplayFor(modelItem => item.FirstName)  @Html.DisplayFor(modelItem => item.LastName)</span></div>
+            <span class="fontBold"> @Html.DisplayFor(modelItem => item.FirstName)  @Html.DisplayFor(modelItem => item.LastName)</span>
+        </div>
         <div>
             <span>Member ID:</span>
             <span class="fontBold">
@@ -55,8 +56,15 @@
         </span>
     </td>
     <td>
-        <span>Salon ID:</span>       
-        <span class="fontBold"> @Html.DisplayFor(modelItem => item.SalonID)</span>
+        <div>
+           
+            <span class="fontBold"> @Html.DisplayFor(modelItem => item.SalonName)</span>
+        </div>
+        <div>
+            <span>Salon ID:</span>
+            <span class="fontBold"> @Html.DisplayFor(modelItem => item.SalonID)</span>
+        </div>
+
     </td>
     <td>
         @Html.ActionLink("Edit", "Edit", new { id = item.MemberID }) |

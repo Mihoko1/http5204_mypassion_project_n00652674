@@ -31,6 +31,15 @@ namespace http5204_mypassion_project_n00652674.Controllers
             //Here you can choose which information is exposed to the API
             foreach (var Member in Members)
             {
+                Salon Salon = db.Salons
+               .Where(s => s.Members.Any(m => m.SalonID == Member.SalonID))
+               .FirstOrDefault();
+                //if not found, return 404 status code.
+                if (Salon == null)
+                {
+                    return NotFound();
+                }
+
                 MemberDto NewMember = new MemberDto
                 {
                     MemberID = Member.MemberID,
@@ -41,7 +50,7 @@ namespace http5204_mypassion_project_n00652674.Controllers
                     Picture = Member.Picture,
                     MemberHasPic = Member.MemberHasPic,
                     SalonID = Member.SalonID,
-                    SalonName = Member.SalonName
+                    SalonName = Salon.SalonName
 
                 };
                 MemberDtos.Add(NewMember);
@@ -62,6 +71,15 @@ namespace http5204_mypassion_project_n00652674.Controllers
                 return NotFound();
             }
 
+            Salon Salon = db.Salons
+              .Where(s => s.Members.Any(m => m.SalonID == Member.SalonID))
+              .FirstOrDefault();
+            //if not found, return 404 status code.
+            if (Salon == null)
+            {
+                return NotFound();
+            }
+
             MemberDto MemberDto = new MemberDto
             {
                 MemberID = Member.MemberID,
@@ -72,7 +90,7 @@ namespace http5204_mypassion_project_n00652674.Controllers
                 Picture = Member.Picture,
                 MemberHasPic = Member.MemberHasPic,
                 SalonID = Member.SalonID,
-                SalonName = Member.SalonName
+                SalonName = Salon.SalonName
 
 
             };

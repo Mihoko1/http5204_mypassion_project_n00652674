@@ -10,67 +10,59 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.HairstyleID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MemberID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HairstylePhoto)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Type)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Detail)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateUpload)
-        </th>
-        <th></th>
-    </tr>
-
+   
 @foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.HairstyleID)
-    </td>
-    <td>
-        @{
-            //Use server rendering to determine an image
-            string pic = "/Content/Hairstyles/default.jpg";
-            string alt = "No Hairstyle Picture Provided.";
-            if (item.HairstyleHasPic)
-            {
-                pic = "/Content/Hairstyles/" + item.HairstyleID + "." + item.HairstylePhoto;
-                alt = "Hairstyle photo by " + item.FirstName + " " + item.LastName;
+    <tr>
+
+        <td>
+            @{
+                //Use server rendering to determine an image
+                string pic = "/Content/Hairstyles/default.jpg";
+                string alt = "No Hairstyle Picture Provided.";
+                if (item.HairstyleHasPic)
+                {
+                    pic = "/Content/Hairstyles/" + item.HairstyleID + "." + item.HairstylePhoto;
+                    alt = "Hairstyle photo by " + item.FirstName + " " + item.LastName;
+                }
             }
-        }
 
-        <img class="imgSize" src="@pic" alt="@alt" />
+            <img class="imgSize" src="@pic" alt="@alt" />
 
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.MemberID)
-    </td>
+        </td>
+        <td>
+            <div>
+                <span>Hairstyle ID:</span>
+                <span class="fontBold"> @Html.DisplayFor(modelItem => item.HairstyleID)</span>
+            </div>
+            
+           
+        </td>
+        <td>
+            <div>
+                <span>By:</span>
+                <span class="fontBold"> @Html.DisplayFor(modelItem => item.FirstName)  @Html.DisplayFor(modelItem => item.LastName)</span>
+            </div>
+            <div>
+                <span>Member ID:</span>
+                <span class="fontBold">
+                    @Html.DisplayFor(modelItem => item.MemberID)
+                </span>
+            </div>
+           
+        </td>
 
-    <td>
-        @Html.DisplayFor(modelItem => item.Type)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Detail)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.DateUpload)
-    </td>
-    <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.HairstyleID }) |
-        @Html.ActionLink("Details", "Details", new { id = item.HairstyleID }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.HairstyleID })
-    </td>
-</tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateUpload)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.HairstyleID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.HairstyleID }) |
+            @Html.ActionLink("Delete", "DeleteConfirm", new { id = item.HairstyleID })
+        </td>
+    </tr>
 }
 
 </table>
