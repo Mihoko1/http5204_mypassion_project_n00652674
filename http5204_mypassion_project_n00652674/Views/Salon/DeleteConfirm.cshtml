@@ -18,65 +18,83 @@
     <div class="container">
 
         <div class="row">
-            <div class="col-xs-10">
-                <div class="itemContainer">
-                    <div class="fontBold">
-                        Salon Name
-                    </div>
-                    <div class="fontLarger">
-                        @Html.DisplayFor(model => model.SalonName)
-                    </div>
-                </div>
-                <div class="itemContainer">
-                    <div class="fontBold">
-                        Address
-                    </div>
-                    <div class="fontLarger">
-                        <div>
-                            @Html.DisplayFor(model => model.Address)
-                        </div>
-                        <div>
-                            @Html.DisplayFor(model => model.City), @Html.DisplayFor(model => model.Postal)
-                        </div>
-                    </div>
-                </div>
-                <div class="itemContainer">
-                    <div class="fontBold">
-                        Area
-                    </div>
-                    <div class="fontLarger">
-                        @Html.DisplayFor(model => model.Area)
-                    </div>
-                </div>
-                <div class="itemContainer">
-                    <div class="fontBold">
-                        Website
-                    </div>
-                    <div class="fontLarger">
-                        @Html.DisplayFor(model => model.Website)
-                    </div>
-                </div>
-                <div class="itemContainer">
-                    <div class="fontBold">
-                        Phone
-                    </div>
-                    <div class="fontLarger">
-                        @Html.DisplayFor(model => model.Phone)
-                    </div>
-                </div>
+            <div class="col-xs-12">
 
-                @using (Html.BeginForm("Delete", "Salon", new { id = Model.SalonID }))
-                {
-                    @Html.AntiForgeryToken()
+                @{
+                    //Use server rendering to determine an image
+                    string pic = "/Content/Salons/default.jpg";
+                    string alt = "No Profile Picture Provided.";
+                    if (Model.SalonHasPic)
+                    {
+                        pic = "/Content/Salons/" + Model.SalonID + "." + Model.SalonPicture;
+                        alt = "Salon pictures of " + Model.SalonName;
 
-                    <div class="form-actions no-color">
-                        <input type="submit" value="Delete" class="btn btn-default" /> 
-                      
-                    </div>
+                    }
                 }
+                <div class="col-xs-4 detailsimgSize">
+
+                    <img class="detailsimgSize" src="@pic" alt="@alt" />
+                </div>
+                <div class="col-xs-8 info">
+                    <div class="itemContainer">
+                        <div class="fontBold">
+                            Salon Name
+                        </div>
+                        <div class="fontLarger">
+                            @Html.DisplayFor(model => model.SalonName)
+                        </div>
+                    </div>
+                    <div class="itemContainer">
+                        <div class="fontBold">
+                            Address
+                        </div>
+                        <div class="fontLarger">
+                            <div>
+                                @Html.DisplayFor(model => model.Address)
+                            </div>
+                            <div>
+                                @Html.DisplayFor(model => model.City), @Html.DisplayFor(model => model.Postal)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="itemContainer">
+                        <div class="fontBold">
+                            Area
+                        </div>
+                        <div class="fontLarger">
+                            @Html.DisplayFor(model => model.Area)
+                        </div>
+                    </div>
+                    <div class="itemContainer">
+                        <div class="fontBold">
+                            Website
+                        </div>
+                        <div class="fontLarger">
+                            @Html.DisplayFor(model => model.Website)
+                        </div>
+                    </div>
+                    <div class="itemContainer">
+                        <div class="fontBold">
+                            Phone
+                        </div>
+                        <div class="fontLarger">
+                            @Html.DisplayFor(model => model.Phone)
+                        </div>
+                    </div>
+
+                    @using (Html.BeginForm("Delete", "Salon", new { id = Model.SalonID }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-actions no-color">
+                            <input type="submit" value="Delete" class="btn btn-default" />
+
+                        </div>
+                    }
+                </div>
             </div>
         </div>
-
+        
     </div>
 
 
