@@ -10,6 +10,6 @@ This CMS manages hair salon information, hair stylists’ information as well as
 
 ## FEATURES
 
-Users can create, update, delete and view Members(Hair Stylists), Salons, and Hairstyles (Portfolios)
-Search filter
+- Users can create, update, delete and view Members(Hair Stylists), Salons, and Hairstyles (Portfolios)
+- Search filter
 
